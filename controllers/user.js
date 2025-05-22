@@ -974,7 +974,9 @@ exports.resetPass = async (req, res, next) => {
             ip: ip,
             device: device,
             month: currentMonth,
-            year: currentYear
+            year: currentYear,
+            createdBy:'1',
+            updatedBy:'1'
         })
         return res.status(204).json({})
 

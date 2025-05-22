@@ -16,3 +16,7 @@
 2025-05-22T10:57:52.811Z [ERROR]: Erreur: "undefined" is not valid JSON - URL: /tfs/filter-by-statut/active - Méthode: GET
 2025-05-22T10:57:52.823Z [ERROR]: Erreur: "undefined" is not valid JSON - URL: /tfs/filter-by-statut/active - Méthode: GET
 2025-05-22T10:57:52.838Z [ERROR]: Erreur: "undefined" is not valid JSON - URL: /marketers - Méthode: GET
+2025-05-22T11:16:05.204Z [ERROR]: Erreur: Champ 'dateVigueur' inconnu dans field list - URL: /tfs/filter-by-statut/active - Méthode: GET - IP Utilisateur: ::ffff:127.0.0.1
+2025-05-22T11:16:05.241Z [ERROR]: Erreur: Champ 'dateVigueur' inconnu dans field list - URL: /tfs/filter-by-statut/active - Méthode: GET - IP Utilisateur: ::ffff:127.0.0.1
+2025-05-22T11:16:08.029Z [ERROR]: Erreur: Champ 'DetailsVilles.produit_id' inconnu dans field list - URL: /depots - Méthode: GET - IP Utilisateur: ::ffff:127.0.0.1
+2025-05-22T11:16:13.115Z [ERROR]: Erreur: Cannot convert object to primitive value - URL: /bilans/quantities-per-products-per-area/2025-05-01/2025-05-22 - Méthode: GET - IP Utilisateur: ::ffff:127.0.0.1
