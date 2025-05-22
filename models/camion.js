@@ -14,10 +14,109 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Camion.init({
-    name: DataTypes.STRING
+    id: {
+      type: DataTypes.BIGINT(20),
+      primaryKey: true,
+      autoIncrement: true
+    },
+    ssat_id: {
+      type: DataTypes.STRING(191),
+      allowNull: false
+    },
+    imat: {
+      type: DataTypes.STRING(191),
+      allowNull: false,
+      unique: true,
+    },
+    nbrVanne: {
+      type: DataTypes.INTEGER(11),
+      allowNull: false
+    },
+    annee: {
+      type: DataTypes.STRING(191),
+      allowNull: false
+    },
+    type: {
+      type: DataTypes.STRING(191),
+      allowNull: false
+    },
+    isactive: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      default: false
+    },
+    marque: {
+      type: DataTypes.STRING(191),
+      allowNull: false
+    },
+    transporteur_id: {
+      type: DataTypes.BIGINT(20),
+      allowNull: false,
+      references: {
+        model: "Transporteur",
+        key: "id"
+      }
+    },
+    capacity: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0,
+      allowNull: false
+    },
+    filling_level: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0,
+      allowNull: false
+    },
+    marketer_id: {
+      type: DataTypes.INTEGER,
+      allowNull: true
+    },
+    createdBy: {
+      type: DataTypes.INTEGER(11),
+      allowNull: false
+    },
+    updatedBy: {
+      type: DataTypes.INTEGER(11),
+      allowNull: false
+    },
+    deletedBy: {
+      type: DataTypes.INTEGER(11),
+      allowNull: true
+    },
+    restoredBy: {
+      type: DataTypes.INTEGER(11),
+      allowNull: true
+    },
+    suspensionComment: {
+      type: DataTypes.TEXT,
+      allowNull: true
+    },
+    createdAt: {
+      type: DataTypes.DATE,
+      allowNull: false
+    },
+    updatedAt: {
+      type: DataTypes.DATE,
+      allowNull: false
+    },
+    deletedAt: {
+      type: DataTypes.DATE,
+      allowNull: true
+    },
   }, {
     sequelize,
     modelName: 'Camion',
+    paranoid: true,
+    timestamps: true,
+    hooks: {
+      beforeCreate: async (instance, options) => {
+        instance.createdAt = new Date();
+        instance.updatedAt = new Date();
+      },
+      beforeUpdate: (instance, options) => {
+        instance.updatedAt = new Date();
+      }
+    }
   });
   return Camion;
 };

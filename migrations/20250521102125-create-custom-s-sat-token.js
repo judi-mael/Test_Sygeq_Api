@@ -3,23 +3,31 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('CustomSSatTokens', {
-      id: {
-        allowNull: false,
-        autoIncrement: true,
+      id:{
+        type:Sequelize.BIGINT(20),
         primaryKey: true,
-        type: Sequelize.INTEGER
+        autiIncrement: true,
       },
-      name: {
-        type: Sequelize.STRING
+      type: {
+        type: Sequelize.STRING(191),
+        allowNull: true
+      },
+      token:{
+        type:Sequelize.STRING(191),
+        allowNull:true
       },
       createdAt: {
+        type: Sequelize.DATE,
         allowNull: false,
-        type: Sequelize.DATE
       },
       updatedAt: {
+        type: Sequelize.DATE,
         allowNull: false,
-        type: Sequelize.DATE
-      }
+      },
+      deletedAt: {
+        type: Sequelize.DATE,
+        allowNull: true,
+      },
     });
   },
   async down(queryInterface, Sequelize) {

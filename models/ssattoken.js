@@ -14,10 +14,41 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   SSatToken.init({
-    name: DataTypes.STRING
+    id: {
+            type: DataTypes.BIGINT(20),
+            primaryKey: true,
+            autoIncrement: true
+        },
+        token: {
+            type: DataTypes.STRING(191),
+            allowNull: true
+        },
+        createdAt: {
+            type: DataTypes.DATE,
+            allowNull: false
+        },
+        updatedAt: {
+            type: DataTypes.DATE,
+            allowNull: false
+        },
+        deletedAt: {
+            type: DataTypes.DATE,
+            allowNull: true
+        },
   }, {
     sequelize,
     modelName: 'SSatToken',
+    paranoid:true,
+    timestamps:true,
+        hooks:{
+            beforeCreate: async (instance, options) => {
+                instance.createdAt = new Date();
+                instance.updatedAt = new Date();
+            },
+            beforeUpdate: (instance, options) => {
+                instance.updatedAt = new Date();
+            }
+        }
   });
   return SSatToken;
 };

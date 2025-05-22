@@ -1,0 +1,12 @@
+2025-05-21T17:31:20.041Z [ERROR]: Erreur: "undefined" is not valid JSON - URL: /eiert - Méthode: GET
+2025-05-21T17:31:59.037Z [ERROR]: Erreur: "undefined" is not valid JSON - URL: / - Méthode: GET
+2025-05-21T17:32:07.164Z [ERROR]: Erreur: "undefined" is not valid JSON - URL: / - Méthode: GET
+2025-05-21T17:35:54.679Z [ERROR]: Erreur: "undefined" is not valid JSON - URL: / - Méthode: GET
+2025-05-21T17:39:42.361Z [ERROR]: Erreur: "undefined" is not valid JSON - URL: /auth/ - Méthode: GET
+2025-05-21T17:40:08.248Z [ERROR]: Erreur: "undefined" is not valid JSON - URL: /auth/ - Méthode: GET
+2025-05-21T17:41:24.838Z [ERROR]: Erreur: "undefined" is not valid JSON - URL: /auth/uname-login - Méthode: GET
+2025-05-21T17:43:48.327Z [ERROR]: Erreur: bcrypt is not defined - URL: /auth/uname-login - Méthode: POST - IP Utilisateur: ::ffff:127.0.0.1
+2025-05-21T18:12:23.882Z [ERROR]: Erreur: "undefined" is not valid JSON - URL: //users/profile/picture - Méthode: GET
+2025-05-21T18:21:46.787Z [ERROR]: Erreur: "undefined" is not valid JSON - URL: //users/profile/picture - Méthode: GET
+2025-05-22T07:47:48.019Z [ERROR]: Erreur: "undefined" is not valid JSON - URL: //users/profile/picture - Méthode: GET
+2025-05-22T08:12:15.293Z [ERROR]: Erreur: "undefined" is not valid JSON - URL: //users/profile/picture - Méthode: GET

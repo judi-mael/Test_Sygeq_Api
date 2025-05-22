@@ -4,22 +4,64 @@ module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('Insurances', {
       id: {
-        allowNull: false,
-        autoIncrement: true,
+        type: Sequelize.BIGINT(20),
         primaryKey: true,
-        type: Sequelize.INTEGER
+        autoIncrement: true
       },
-      name: {
-        type: Sequelize.STRING
+      camion_id: {
+        type: Sequelize.BIGINT(20),
+        allowNull: false,
+        references: {
+          model: 'Camions',
+          key: 'id'
+        },
+      },
+      date_debut: {
+        type: Sequelize.DATEONLY,
+        allowNull: false
+      },
+      date_fin: {
+        type: Sequelize.DATEONLY,
+        allowNull: false
+      },
+      document: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
+      createdBy: {
+        type: Sequelize.INTEGER(11),
+        allowNull: false
+      },
+      updatedBy: {
+        type: Sequelize.INTEGER(11),
+        allowNull: false
+      },
+      deletedBy: {
+        type: Sequelize.INTEGER(11),
+        allowNull: true
+      },
+      restoredBy: {
+        type: Sequelize.INTEGER(11),
+        allowNull: true
+      },
+      suspensionComment: {
+        type: Sequelize.TEXT,
+        allowNull: true
       },
       createdAt: {
+        type: Sequelize.DATE,
         allowNull: false,
-        type: Sequelize.DATE
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
       },
       updatedAt: {
+        type: Sequelize.DATE,
         allowNull: false,
-        type: Sequelize.DATE
-      }
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
+      },
+      deletedAt: {
+        type: Sequelize.DATE,
+        allowNull: true
+      },
     });
   },
   async down(queryInterface, Sequelize) {

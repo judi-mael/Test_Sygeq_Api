@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
       autoIncrement: true
     },
     camion_id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.BIGINT(20),
       allowNull: false
     },
     date_debut: {

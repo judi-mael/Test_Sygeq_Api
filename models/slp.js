@@ -14,10 +14,73 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Slp.init({
-    name: DataTypes.STRING
+    id: {
+            type: DataTypes.BIGINT(20),
+            primaryKey: true,
+            autoIncrement: true
+        },
+        camion_id: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
+        date_debut: {
+            type: DataTypes.DATEONLY,
+            allowNull: false,
+        },
+        date_fin: {
+            type: DataTypes.DATEONLY,
+            allowNull: false,
+        },
+        document: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        createdBy: {
+            type: DataTypes.INTEGER(11),
+            allowNull: false
+        },
+        updatedBy: {
+            type: DataTypes.INTEGER(11),
+            allowNull: false
+        },
+        deletedBy: {
+            type: DataTypes.INTEGER(11),
+            allowNull: true
+        },
+        restoredBy: {
+            type: DataTypes.INTEGER(11),
+            allowNull: true
+        },
+        suspensionComment:{
+            type: DataTypes.TEXT,
+            allowNull: true
+        },
+        createdAt: {
+            type: DataTypes.DATE,
+            allowNull: false
+        },
+        updatedAt: {
+            type: DataTypes.DATE,
+            allowNull: false
+        },
+        deletedAt: {
+            type: DataTypes.DATE,
+            allowNull: true
+        },
   }, {
     sequelize,
     modelName: 'Slp',
+    paranoid: true,
+        timestamps:true,
+        hooks:{
+            beforeCreate: async (instance, options) => {
+                instance.createdAt = new Date();
+                instance.updatedAt = new Date();
+            },
+            beforeUpdate: (instance, options) => {
+                instance.updatedAt = new Date();
+            }
+        }
   });
   return Slp;
 };

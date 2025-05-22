@@ -36,6 +36,10 @@ module.exports = {
         type: Sequelize.DOUBLE(8,2),
         allowNull: true,
       },
+      caisseB2B: {
+        type: Sequelize.DOUBLE(8,2),
+        allowNull: true,
+      },
       createdBy: {
         type: Sequelize.INTEGER(11),
         allowNull: false,

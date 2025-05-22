@@ -4,22 +4,54 @@ module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('Villes', {
       id: {
-        allowNull: false,
-        autoIncrement: true,
+        type: Sequelize.BIGINT(20),
         primaryKey: true,
-        type: Sequelize.INTEGER
+        autoIncrement: true,
       },
-      name: {
-        type: Sequelize.STRING
+      nom: {
+        type: Sequelize.STRING(191),
+        allowNull: false,
+      },
+      region_id: {
+        type: Sequelize.BIGINT(20),
+        allowNull: true,
+        references: {
+          model: 'Regions',
+          key: 'id',
+        },
+      },
+      createdBy: {
+        type: Sequelize.INTEGER(11),
+        allowNull: false,
+      },
+      updatedBy: {
+        type: Sequelize.INTEGER(11),
+        allowNull: false,
+      },
+      deletedBy: {
+        type: Sequelize.INTEGER(11),
+        allowNull: true,
+      },
+      restoredBy: {
+        type: Sequelize.INTEGER(11),
+        allowNull: true,
       },
       createdAt: {
+        type: Sequelize.DATE,
         allowNull: false,
-        type: Sequelize.DATE
       },
       updatedAt: {
+        type: Sequelize.DATE,
         allowNull: false,
-        type: Sequelize.DATE
-      }
+      },
+      deletedAt: {
+        type: Sequelize.DATE,
+        allowNull: true,
+      },
+      suspensionComment: {
+        type: Sequelize.TEXT,
+        allowNull: true,
+      },
     });
   },
   async down(queryInterface, Sequelize) {

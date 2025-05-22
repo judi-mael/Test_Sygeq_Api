@@ -14,10 +14,74 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Contrat.init({
-    name: DataTypes.STRING
+    id: {
+      type: DataTypes.BIGINT(20),
+      primaryKey: true,
+      autoIncrement: true
+    },
+    marketer_id: {
+      type: DataTypes.INTEGER(11),
+      allowNull: false
+    },
+    transporteur_id: {
+      type: DataTypes.INTEGER(11),
+      allowNull: false
+    },
+    statut: {
+      type: DataTypes.ENUM('En attente', 'Approuvé', 'Rejeté', 'Annulé'),
+      defaultValue: 'En Attente',
+      allowNull: false
+    },
+    commentaire: {
+      type: DataTypes.TEXT,
+      allowNull: true
+    },
+    createdBy: {
+      type: DataTypes.INTEGER(11),
+      allowNull: false
+    },
+    updatedBy: {
+      type: DataTypes.INTEGER(11),
+      allowNull: false
+    },
+    deletedBy: {
+      type: DataTypes.INTEGER(11),
+      allowNull: true
+    },
+    restoredBy: {
+      type: DataTypes.INTEGER(11),
+      allowNull: true
+    },
+    suspensionComment: {
+      type: DataTypes.TEXT,
+      allowNull: true
+    },
+    createdAt: {
+      type: DataTypes.DATE,
+      allowNull: false
+    },
+    updatedAt: {
+      type: DataTypes.DATE,
+      allowNull: false
+    },
+    deletedAt: {
+      type: DataTypes.DATE,
+      allowNull: true
+    },
   }, {
     sequelize,
     modelName: 'Contrat',
+    paranoid: true,
+    timestamps: true,
+    hooks: {
+      beforeCreate: async (instance, options) => {
+        instance.createdAt = new Date();
+        instance.updatedAt = new Date();
+      },
+      beforeUpdate: (instance, options) => {
+        instance.updatedAt = new Date();
+      }
+    }
   });
   return Contrat;
 };
