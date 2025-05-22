@@ -10,3 +10,9 @@
 2025-05-21T18:21:46.787Z [ERROR]: Erreur: "undefined" is not valid JSON - URL: //users/profile/picture - Méthode: GET
 2025-05-22T07:47:48.019Z [ERROR]: Erreur: "undefined" is not valid JSON - URL: //users/profile/picture - Méthode: GET
 2025-05-22T08:12:15.293Z [ERROR]: Erreur: "undefined" is not valid JSON - URL: //users/profile/picture - Méthode: GET
+2025-05-22T10:25:22.405Z [ERROR]: Erreur: "undefined" is not valid JSON - URL: //users/profile/picture - Méthode: GET
+2025-05-22T10:57:52.439Z [ERROR]: Erreur: "undefined" is not valid JSON - URL: //users/profile/picture - Méthode: GET
+2025-05-22T10:57:52.779Z [ERROR]: Erreur: "undefined" is not valid JSON - URL: /ttks/filter-by-statut/active - Méthode: GET
+2025-05-22T10:57:52.811Z [ERROR]: Erreur: "undefined" is not valid JSON - URL: /tfs/filter-by-statut/active - Méthode: GET
+2025-05-22T10:57:52.823Z [ERROR]: Erreur: "undefined" is not valid JSON - URL: /tfs/filter-by-statut/active - Méthode: GET
+2025-05-22T10:57:52.838Z [ERROR]: Erreur: "undefined" is not valid JSON - URL: /marketers - Méthode: GET

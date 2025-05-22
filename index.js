@@ -41,6 +41,19 @@ app.use(sanitizeInput);
 
 
 //Middleware pour Éviter les Injections SQL
+// const sqlSanitizer = (req, res, next) => {
+//     const sanitize = (value) => {
+//         if (typeof value === "string") {
+//             return value.replace(/['"%;()]/g, ""); // Supprime les caractères dangereux
+//         }
+//         return value;
+//     };
+
+//     req.body = JSON.parse(JSON.stringify(req.body), (key, value) => sanitize(value));
+//     req.query = JSON.parse(JSON.stringify(req.query), (key, value) => sanitize(value));
+
+//     next();
+// };
 const sqlSanitizer = (req, res, next) => {
     const sanitize = (value) => {
         if (typeof value === "string") {
@@ -49,8 +62,13 @@ const sqlSanitizer = (req, res, next) => {
         return value;
     };
 
-    req.body = JSON.parse(JSON.stringify(req.body), (key, value) => sanitize(value));
-    req.query = JSON.parse(JSON.stringify(req.query), (key, value) => sanitize(value));
+    if (req.body && typeof req.body === "object") {
+        req.body = JSON.parse(JSON.stringify(req.body), (key, value) => sanitize(value));
+    }
+
+    if (req.query && typeof req.query === "object") {
+        req.query = JSON.parse(JSON.stringify(req.query), (key, value) => sanitize(value));
+    }
 
     next();
 };
@@ -91,7 +109,8 @@ app.use(cors({
 }))
 app.use((err, req, res, next) => {
   logger.error(`Erreur: ${err.message} - URL: ${req.originalUrl} - Méthode: ${req.method}`);
-//   res.status(err.status || 500).json({ error: err.message });
+  console.log("==========================",err)
+  res.status(err.status || 500).json({ error: err.message });
 });
 
 
@@ -155,16 +174,16 @@ const userRoutes = require('./routes/users')
 const villeRoutes = require('./routes/villes');
 const version  = require('./routes/version')
 const btRoutes  = require('./routes/bonTransfere');
+const { log } = require('console');
 
 
 /******************************/
 /*** MISE EN PLACE DU ROUTAGE */
 // app.get('/', ecCtrl.isSystemActive, (req, res) => res.json({message: 'API MIC en ligne. Tout est OK!'}))
-app.get('/', (req, res) => res.json({message: 'API MIC en ligne. Tout est OK!'}))
 
 
-app.use('/auth', authRoutes)
 app.use('/b2bs', b2bRoutes)
+app.use('/auth', authRoutes)
 app.use('/bilans', bilanRoutes)
 app.use('/bilans_bt', btbilanRoutes)
 app.use('/bcs', bcRoutes)
@@ -198,6 +217,7 @@ app.use('/public', express.static('public'))
 // app.use((req, res) => res.status(501).json({message: 'Ressource non implémentée'}));
 // app.use('*', (req, res) => res.status(501).json({message: 'Ressource non implémentée'}))
 
+// app.get('/', (req, res) => res.json({message: 'API MIC en ligne. Tout est OK!'}))
 app.use((err, req, res, next) => {
     const userIp = req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.socket.remoteAddress || req.connection.socket.remoteAddress;
     logger.error(`Erreur: ${err.message} - URL: ${req.originalUrl} - Méthode: ${req.method} - IP Utilisateur: ${userIp}`);
